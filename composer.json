@@ -1,0 +1,14 @@
+{
+    "name": "maria0324/pop-it-mvc",
+    "description": "work",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "maria0324",
+            "email": "marusya0323@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
