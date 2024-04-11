@@ -2,15 +2,29 @@
 
 namespace Controller;
 
+use Illuminate\Database\Capsule\Manager as DB;
+use Model\Post;
+use Src\Request;
 use Src\View;
+use Model\User;
+
 
 class Site
 {
-    public function index(): string
+    public function signup(Request $request): string
     {
-        $view = new View();
-        return $view->render('site.hello', ['message' => 'index working']);
+        if ($request->method==='POST' && User::create($request->all())){
+            return new View('site.signup', ['message'=>'Вы успешно зарегистрированы']);
+        }
+        return new View('site.signup');
     }
+
+    public function index(Request $request): string
+    {
+        $posts = Post::where('id', $request->id)->get();
+        return (new View())->render('site.post', ['posts' => $posts]);
+    }
+
 
     public function hello(): string
     {
