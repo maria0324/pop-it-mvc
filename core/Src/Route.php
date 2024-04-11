@@ -6,6 +6,21 @@ use Error;
 
 class Route
 {
+    public function redirect(string $url): void
+    {
+        header('Location: ' . $this->getUrl($url));
+    }
+
+    public function getUrl(string $url): string
+    {
+        return self::$prefix . $url;
+    }
+
+    public function __construct(string $prefix = '')
+    {
+        self::setPrefix($prefix);
+    }
+
     private static array $routes = [];
     private static string $prefix = '';
 
@@ -42,7 +57,8 @@ class Route
         }
 
 
-        call_user_func([new $class, $action]);
+        call_user_func([new $class, $action], new Request());
+
     }
 }
 
