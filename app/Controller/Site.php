@@ -62,4 +62,16 @@ class Site
         return new View('site.add_patient');
     }
 
+    public function add_doctor(Request $request): string
+    {
+
+        return new View('site.add_doctor');
+    }
+
+    public function add_reseption(Request $request): string
+    {
+
+        return new View('site.add_reseption');
+    }
+
 }
