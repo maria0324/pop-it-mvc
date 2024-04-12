@@ -67,17 +67,145 @@ header{
 
 a{
 
-    text-decoration: none;
+
     font-size: 1.5em;
     font-weight: bold;
-    padding: 30px;
-    color: #88B8CD;
+    padding: 15px;
+    color: black;
+    width: 500px;
 }
 
 h2{
-    color: #88B8CD;
+    color: black;
 }
 
 label{
-    color: #88B8CD;
+    color: black;
+}
+
+.h-patient{
+    top: 20px;
+    display: flex;
+    position: relative;
+    left: 150px;
+    width: 300px;
+    height: 70px;
+    font-size: 40px;
+    border: 5px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.h-doctor{
+    display: flex;
+    position: relative;
+    left: 150px;
+    width: 300px;
+    height: 70px;
+    font-size: 40px;
+    border:5px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.h-notes{
+    display: flex;
+    position: relative;
+    left: 150px;
+    width: 300px;
+    height: 70px;
+    font-size: 40px;
+    border: 5px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+.a-patient{
+    position: relative;
+    left: 200px;
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    width: 500px;
+}
+.a-doctor{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    left: 200px;
+    width: 500px;
+}
+.a-notes{
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    left: 200px;
+    width: 500px;
+}
+img{
+    position: relative;
+    right: 430px;
+    width: 50px;
+    height: 50px;
+
+}
+.welcome{
+    font-size: 32px;
+}
+
+.add-patient-container form{
+
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 600px;
+}
+
+.add-patient-container{
+    height: 675px;
+    position: relative;
+    left: 750px;
+    top: 75px;
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+
+.add-patient-container label{
+    width: 300px;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+
+}
+.add-patient-container button{
+    width: 300px;
+    background-color: #88B8CD;
+}
+
+.add-patient-container input[type="date"],
+.add-patient-container input[type="text"]{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+.add-patient-container button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #88B8CD;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
 }

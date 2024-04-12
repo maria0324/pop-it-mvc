@@ -19,7 +19,7 @@ class Site
         }
         //Если удалось аутентифицировать пользователя, то редирект
         if (Auth::attempt($request->all())) {
-            app()->route->redirect('/hello');
+            app()->route->redirect('/first_page');
         }
         //Если аутентификация не удалась, то сообщение об ошибке
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
@@ -51,4 +51,15 @@ class Site
     {
         return new View('site.hello', ['message' => 'hello working']);
     }
+    public function first_page(Request $request): string
+    {
+
+        return new View('site.first_page');
+    }
+    public function add_patient(Request $request): string
+    {
+
+        return new View('site.add_patient');
+    }
+
 }

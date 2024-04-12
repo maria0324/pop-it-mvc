@@ -10,12 +10,17 @@
 </head>
 <body>
 <header>
+    <div class="logo">
+        <img src="/pop-it-mvc/public/img/logo.png">
+    </div>
     <nav>
         <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
         <?php
         if (!app()->auth::check()):
             ?>
             <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
+            <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+
 
         <?php
         else:
