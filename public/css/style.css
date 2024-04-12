@@ -1,0 +1,83 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #88B8CD;
+}
+
+header{
+    position: relative;
+    height: 105px;
+    width: 100%;
+
+    display: flex;
+    top: 0px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+}
+/* Стиль контейнера входа */
+.login-container {
+    position: relative;
+    left: 750px;
+    top: 250px;
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+/* Стиль формы и элементов формы */
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #88B8CD;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+a{
+
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 30px;
+    color: #88B8CD;
+}
+
+h2{
+    color: #88B8CD;
+}
+
+label{
+    color: #88B8CD;
+}
