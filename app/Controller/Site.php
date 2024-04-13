@@ -8,6 +8,7 @@ use Src\Request;
 use Src\View;
 use Model\User;
 use Src\Auth\Auth;
+use Model\Doctor;
 
 class Site
 {
@@ -42,8 +43,8 @@ class Site
 
     public function index(Request $request): string
     {
-        $posts = Post::where('id', $request->id)->get();
-        return (new View())->render('site.post', ['posts' => $posts]);
+        $doctors =Doctor ::all();
+        return (new View())->render('site.doctor', ['doctors' => $doctors]);
     }
 
 
@@ -73,5 +74,26 @@ class Site
 
         return new View('site.add_reseption');
     }
+    public function patient(Request $request): string
+    {
+
+        return new View('site.patient');
+    }
+
+    public function doctor(Request $request): string
+    {
+
+        return new View('site.doctor');
+
+    }
+
+    public function record(Request $request): string
+    {
+
+        return new View('site.record');
+    }
+
+
 
 }
+

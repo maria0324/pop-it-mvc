@@ -191,6 +191,7 @@ img{
     background-color: #88B8CD;
 }
 
+
 .add-patient-container input[type="date"],
 .add-patient-container input[type="text"]{
     padding: 10px;
@@ -248,7 +249,7 @@ img{
     background-color: #88B8CD;
 }
 
-
+.add-doctor-container input[type="password"],
 .add-doctor-container input[type="text"]{
     padding: 10px;
     border: 1px solid #ddd;
@@ -265,4 +266,55 @@ img{
     color: white;
     cursor: pointer;
     border-radius: 20px;
+}
+
+
+.add-user-container input[type="password"],
+.add-user-container input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.add-user-container button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #88B8CD;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.add-user-container form{
+
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 600px;
+}
+
+
+.add-user-container{
+    height: 270px;
+    position: relative;
+    left: 750px;
+    top: 75px;
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+
+.add-user-container label{
+    width: 300px;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+
 }
