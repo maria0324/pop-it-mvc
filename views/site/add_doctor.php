@@ -2,13 +2,13 @@
     <h2>Запись на прием</h2>
 
     <form method="post">
-        <label>Фамилия <input type="text" name=""></label>
-        <label>Имя <input type="text" name="login"></label>
-        <label>Отчетво <input type="text" name="login"></label>
-        <label>Адрес <input type="text" name="login"></label>
-        <label>Номер телефона <input type="text" name="login"></label>
-        <label>Должность <input type="text" name=""></label>
-        <label>Специализация<input type="text" name=""></label>
+        <label>Фамилия <input type="text" name="surname"></label>
+        <label>Имя <input type="text" name="name"></label>
+        <label>Отчетво <input type="text" name="patronymic"></label>
+        <label>Адрес <input type="text" name="address"></label>
+        <label>Номер телефона <input type="text" name="number"></label>
+        <label>Должность <input type="text" name="id_post"></label>
+        <label>Специализация<input type="text" name="id_speciality"></label>
         <button>Добавить</button>
     </form>
 
