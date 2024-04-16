@@ -11,15 +11,17 @@
         <td>Дата рождения</td>
         <td>Номер полиса</td>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    <?php foreach ($patients as $patient): ?>
+        <tr>
+            <td><?= $patient->id ?></td>
+            <td><?= $patient->surname ?></td>
+            <td><?= $patient->name ?></td>
+            <td><?= $patient->patronynic ?></td>
+            <td><?= $patient->gender ?></td>
+            <td><?= $patient->address ?></td>
+            <td><?= $patient->number ?></td>
+            <td><?= $patient->date_birth ?></td>
+            <td><?= $patient->polis ?></td>
+        </tr>
+    <?php endforeach; ?>
 </table>

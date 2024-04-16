@@ -6,22 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 
 
-class Record extends Model
+class Status extends Model
 
 {
     use HasFactory;
 
-
+    protected $table = 'status';
 
     public $timestamps = false;
     protected $fillable = [
-        'id_doctor',
-        'id_patient',
-        'date',
-        'id_status'
-
+        'name',
     ];
-
-    protected $table = 'records';
 
 }

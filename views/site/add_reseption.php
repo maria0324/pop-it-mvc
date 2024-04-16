@@ -6,25 +6,25 @@
 
 
             <label>Врач</label>
-            <select class="selectType" name="id">
+            <select class="selectType" name="id_doctor">
                 <?php
                     foreach($doctors as $doctor) {
-                        echo  "<option label=' $doctor->surname $doctor->name $doctor->patronymic' <?= $doctor->id ?></option>";
+                        echo  "<option label=' $doctor->surname $doctor->name $doctor->patronymic'>$doctor->id</option>";
                         }
                     ?>
             </select>
 
 
             <label>Пациент </label>
-            <select class="selectType" name="id">
+            <select class="selectType" name="id_patient">
                 <?php
                 foreach($patients as $patient) {
-                    echo  "<option label=' $patient->surname $patient->name $patient->patronymic' <?= $patient->id ?></option>";
+                    echo  "<option label='$patient->surname $patient->name $patient->patronymic'>$patient->id</option>";
                 }
                 ?>
             </select>
 
-            <label>Дата и время приема <input type="datetime-local" name="login"></label>
+            <label>Дата и время приема <input type="datetime-local" name="date"></label>
 
         </div>
         <button>Добавить</button>

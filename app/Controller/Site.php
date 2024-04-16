@@ -5,6 +5,9 @@ namespace Controller;
 use Illuminate\Database\Capsule\Manager as DB;
 use Model\Post;
 use Model\Record;
+use Model\Role;
+use Model\Speciality;
+use Model\Status;
 use Src\Request;
 use Src\View;
 use Model\User;
@@ -12,6 +15,7 @@ use Src\Auth\Auth;
 use Model\Doctor;
 use Model\Patient;
 use Src\Validator\Validator;
+
 
 class Site
 {
@@ -64,6 +68,8 @@ class Site
 
     public function add_doctor(Request $request): string
     {
+        $post = Post::all();
+        $speciality = Speciality::all();
         if ($request->method === 'POST') {
 
             $validator = new Validator($request->all(), [
@@ -92,7 +98,7 @@ class Site
             }
         }
 
-        return new View('site.add_doctor');
+        return new View('site.add_doctor',['posts' => $post,'specialities' => $speciality]);
     }
 
     public function add_reseption(Request $request): string
@@ -100,52 +106,42 @@ class Site
         $doctor = Doctor::all();
         $patient = Patient::all();
         if ($request->method === 'POST') {
-
-        $validator = new Validator($request->all(), [
-            'id_doctor' => ['required'],
-            'id_patient' => ['required'],
-            'id_user' => ['required'],
-            'address' => ['required'],
-            'date' => ['required'],
-            'id_status' => ['required'],
-
-
-        ], [
-            'required' => 'Поле :field пустое',
-
-
-
-        ]);
-
-        if($validator->fails()){
-            return new View('site.add_reseption',
-                ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            $data = $request->all();
+            Record::create([
+                'id_patient' => $data['id_patient'],
+                'id_doctor' => $data['id_doctor'],
+                'id_status' => 1,
+                'date' => $data['date']
+            ]);
+            return new View('site.add_reseption', ['message'=>'Пациент успешно создан', 'doctors' => $doctor, 'patients' => $patient]);
         }
 
-        if (Record::create($request->all())) {
-            return new View('site.add_reseption', ['message'=>'Пациент успешно создан']);
-        }
-    }
+        /*  */
 
         return (new View())->render('site.add_reseption', ['doctors' => $doctor,'patients' => $patient]);
     }
     public function patient(Request $request): string
     {
+        $patient = Patient::all();
 
-        return new View('site.patient');
+        return new View('site.patient', ['patients' => $patient]);
     }
 
     public function doctor(Request $request): string
     {
+        $doctor = Doctor::all();
 
-        return new View('site.doctor');
+        return new View('site.doctor', ['doctors' => $doctor]);
 
     }
 
     public function record(Request $request): string
     {
+        $record = Record::all();
+        $user = Patient::all();
+        $status = Status::all();
 
-        return new View('site.record');
+        return (new View())->render('site.record', ['statuses' => $status,'records' => $record, 'user'=>$user]);
     }
 
 
@@ -180,6 +176,41 @@ class Site
         }
         return new View('site.add_patient');
     }
+
+    public function choice_doctor(Request $request): string
+    {
+
+
+        return new View('site.choice_doctor');
+
+    }
+
+
+
+    public function choice_record(Request $request): string
+    {
+        // Получение списка пациентов
+        $patients = Patient::all();
+
+        if ($request->method === 'POST') {
+            $data = $request->all();
+            $patientId = $data['patient_id'];
+            $records = Record::where('id_patient', $patientId)->get();
+
+            return new View('site.choice_record', ['patients' => $patients, 'records' => $records]);
+
+        }
+
+        return new View('site.choice_record', ['patients' => $patients]);
+    }
+
+
+
+
+
+
+
+
 
 
 

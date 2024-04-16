@@ -10,15 +10,16 @@
         <td>Должность</td>
         <td>Специализация</td>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-
-    </tr>
+    <?php foreach ($doctors as $doctor): ?>
+        <tr>
+            <td><?= $doctor->id ?></td>
+            <td><?= $doctor->surname ?></td>
+            <td><?= $doctor->name ?></td>
+            <td><?= $doctor->patronymic ?></td>
+            <td><?= $doctor->address ?></td>
+            <td><?= $doctor->number ?></td>
+            <td><?= $doctor->id_post ?></td>
+            <td><?= $doctor->id_speciality ?></td>
+        </tr>
+    <?php endforeach; ?>
 </table>

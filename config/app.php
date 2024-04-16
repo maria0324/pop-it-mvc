@@ -14,7 +14,12 @@ return [
         'unique' => \Validators\UniqueValidator::class,
         'birthdate' => \Validators\BirthDateValidator::class,
 
-    ]
+    ],
+    'routeAppMiddleware' => [
+        'trim' => \Middlewares\TrimMiddleware::class,
+        'csrf' => \Middlewares\CSRFMiddleware::class,
+    ],
+
 
 ];
 

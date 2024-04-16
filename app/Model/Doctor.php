@@ -24,4 +24,9 @@ class Doctor extends Model
         'id_speciality',
     ];
 
+    public function record()
+    {
+        return $this->belongsTo(Record::class);
+    }
+
 }
