@@ -192,7 +192,16 @@ img{
 }
 
 
-.add-patient-container input[type="date"],
+.add-patient-container input[type="date"]{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+
+
+}
 .add-patient-container input[type="text"]{
     padding: 10px;
     border: 1px solid #ddd;
@@ -443,4 +452,14 @@ img{
     color: white;
     cursor: pointer;
     border-radius: 20px;
+}
+
+
+.selectType{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 225px;
 }

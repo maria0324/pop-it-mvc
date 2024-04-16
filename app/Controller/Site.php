@@ -97,6 +97,8 @@ class Site
 
     public function add_reseption(Request $request): string
     {
+        $doctor = Doctor::all();
+        $patient = Patient::all();
         if ($request->method === 'POST') {
 
         $validator = new Validator($request->all(), [
@@ -125,7 +127,7 @@ class Site
         }
     }
 
-        return new View('site.add_reseption');
+        return (new View())->render('site.add_reseption', ['doctors' => $doctor,'patients' => $patient]);
     }
     public function patient(Request $request): string
     {
