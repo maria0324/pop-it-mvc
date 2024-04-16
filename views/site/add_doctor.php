@@ -1,5 +1,5 @@
 <div class="add-doctor-container">
-    <h2>Запись на прием</h2>
+    <h2>Добавление врача</h2>
 
     <form method="post">
         <label>Фамилия <input type="text" name="surname"></label>

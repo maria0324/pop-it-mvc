@@ -351,6 +351,15 @@ img{
 }
 
 
+
+ table{
+    background-color: white;
+}
+
+
+
+
+
 .list-doctors td{
     border: 1px solid black;
     width: 255px;
