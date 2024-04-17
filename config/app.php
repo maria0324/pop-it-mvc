@@ -18,6 +18,9 @@ return [
     'routeAppMiddleware' => [
         'trim' => \Middlewares\TrimMiddleware::class,
         'csrf' => \Middlewares\CSRFMiddleware::class,
+        'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
+
+
     ],
 
 

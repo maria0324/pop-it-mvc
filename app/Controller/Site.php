@@ -140,8 +140,9 @@ class Site
         $record = Record::all();
         $user = Patient::all();
         $status = Status::all();
+        $doctor = Doctor::all();
 
-        return (new View())->render('site.record', ['statuses' => $status,'records' => $record, 'user'=>$user]);
+        return (new View())->render('site.record', ['statuses' => $status,'records' => $record, 'user'=>$user, 'doctors' => $doctor]);
     }
 
 
@@ -179,10 +180,31 @@ class Site
 
     public function choice_doctor(Request $request): string
     {
+        // Получение списка пациентов
+        $patients = Patient::all();
 
+        if ($request->method === 'POST') {
+            $data = $request->all();
+            $patientId = $data['patient_id'];
 
-        return new View('site.choice_doctor');
+            // Находим записи, связанные с выбранным пациентом
+            $records = Record::where('id_patient', $patientId)->get();
 
+            // Извлекаем идентификаторы врачей из записей
+            $doctorIds = $records->pluck('id_doctor')->toArray();
+
+            // Получаем информацию о врачах
+            $doctors = Doctor::whereIn('id', $doctorIds)->get();
+
+            // Добавляем полное ФИО врача
+            foreach ($doctors as $doctor) {
+                $doctor->full_name = $doctor->surname . ' ' . $doctor->name . ' ' . $doctor->patronymic;
+            }
+
+            return new View('site.choice_doctor', ['patients' => $patients, 'doctors' => $doctors]);
+        }
+
+        return new View('site.choice_doctor', ['patients' => $patients]);
     }
 
 

@@ -9,7 +9,9 @@
     <?php foreach ($user as $record): ?>
     <tr>
         <td><?= $record->surname ?> <?= $record->name ?> <?= $record->patronynic ?></td>
-        <td><?= $record->doctor->surname ?> <?= $record->doctor->name ?> <?= $record->doctor->patronymic ?></td>
+        <?php foreach($doctors as $doctor): ?>
+            <td><?= $doctor->surname ?> <?= $doctor->name ?> <?= $doctor->patronymic ?></td>
+        <?php endforeach; ?>
         <td><?= $record->date ?></td>
         <td>
             <select class="selectType" name="id">

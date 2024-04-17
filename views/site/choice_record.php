@@ -19,8 +19,9 @@
 <?php
 if (isset($records)) {
     foreach ($records as $record) {
-        echo "<p>Запись номер $record->id</p>";
-        echo "<p>ид врача: $record->id_doctor</p>";
+        echo "<p>Запись номер: $record->id</p>";
+        echo "<p>Ид врача: $record->id_doctor</p>";
         echo "<p>Дата записи: $record->date</p>";
+
     }
 } else echo "<h4>У этого пациента отсутствуют записи</h4>";
