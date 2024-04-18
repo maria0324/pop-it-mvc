@@ -265,6 +265,7 @@ class Site
         }
 
 
+
         $doctors = Doctor::all();
         return new View('site.choice_patient', ['doctors' => $doctors]);
     }
