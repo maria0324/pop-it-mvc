@@ -22,15 +22,15 @@ class Site
 {
     public function login(Request $request): string
     {
-        //Если просто обращение к странице, то отобразить форму
+
         if ($request->method === 'GET') {
             return new View('site.login');
         }
-        //Если удалось аутентифицировать пользователя, то редирект
+
         if (Auth::attempt($request->all())) {
             app()->route->redirect('/first_page');
         }
-        //Если аутентификация не удалась, то сообщение об ошибке
+
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
     }
 
@@ -151,28 +151,26 @@ class Site
 
     public function record(Request $request): string
     {
-        // Получаем все записи
+
         $records = Record::all();
 
-        // Получаем список пациентов
         $user = Patient::all();
 
-        // Получаем список статусов
         $status = Status::all();
 
-        // Получаем список врачей
+
         $doctor = Doctor::all();
 
-        // Разделяем записи на активные и отмененные
+
         $activeRecords = [];
         $cancelledRecords = [];
 
         foreach ($records as $record) {
             if ($record->id_status === 1) {
-                // Активные записи
+
                 $activeRecords[] = $record;
             } else {
-                // Отмененные записи
+
                 $cancelledRecords[] = $record;
             }
         }
@@ -180,7 +178,7 @@ class Site
 
         $sortedRecords = array_merge($activeRecords, $cancelledRecords);
 
-        // Передаем отсортированные записи в представление
+
         return new View('site.record', [
             'statuses' => $status,
             'records' => $sortedRecords,
@@ -224,23 +222,23 @@ class Site
 
     public function choice_doctor(Request $request): string
     {
-        // Получение списка пациентов
+
         $patients = Patient::all();
 
         if ($request->method === 'POST') {
             $data = $request->all();
             $patientId = $data['patient_id'];
 
-            // Находим записи, связанные с выбранным пациентом
+
             $records = Record::where('id_patient', $patientId)->get();
 
-            // Извлекаем идентификаторы врачей из записей
+
             $doctorIds = $records->pluck('id_doctor')->toArray();
 
-            // Получаем информацию о врачах
+
             $doctors = Doctor::whereIn('id', $doctorIds)->get();
 
-            // Добавляем полное ФИО врача
+
             foreach ($doctors as $doctor) {
                 $doctor->full_name = $doctor->surname . ' ' . $doctor->name . ' ' . $doctor->patronymic;
             }
@@ -255,7 +253,7 @@ class Site
 
     public function choice_record(Request $request): string
     {
-        // Получение списка пациентов
+
         $patients = Patient::all();
 
         if ($request->method === 'POST') {
