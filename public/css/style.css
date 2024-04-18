@@ -463,3 +463,22 @@ img{
     flex-direction: column;
     width: 225px;
 }
+
+
+
+
+.choice_button{
+    margin-top: 10px;
+    padding: 10px;
+    border: 3px solid black;
+    background-color: #88B8CD;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.photos {
+    left: 150px;
+    width: 500px;
+    height: 500px;
+}

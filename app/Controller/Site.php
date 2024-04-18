@@ -11,6 +11,7 @@ use Model\Status;
 use Src\Request;
 use Src\View;
 use Model\User;
+use Model\Image;
 use Src\Auth\Auth;
 use Model\Doctor;
 use Model\Patient;
@@ -61,9 +62,22 @@ class Site
     }
     public function first_page(Request $request): string
     {
+        $images = Image::all();
 
-        return new View('site.first_page');
+        if ($request->method === 'POST') {
+            $image = $_FILES['image']['name'];
+            $imagePath = $_SERVER['DOCUMENT_ROOT'] . "/pop-it-mvc/public/img/";
+            $uploaded_file = $imagePath . basename($image);
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploaded_file);
+
+            if (Image::create(['image' => $uploaded_file, 'name' => $image])) {
+                app()->route->redirect('/first_page');
+            }
+        }
+
+        return new View('site.first_page', ['images' => $images]);
     }
+
 
 
     public function add_doctor(Request $request): string
@@ -226,15 +240,34 @@ class Site
         return new View('site.choice_record', ['patients' => $patients]);
     }
 
+    public function choice_patient(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $doctorId = $request->all()['doctor_id'] ?? null;
+            $date = $request->all()['date'] ?? null;
 
 
+            if (!$doctorId || !$date) {
+                return new View('error', ['message' => 'Необходимо указать врача и дату']);
+            }
+
+            $records = Record::where('id_doctor', $doctorId)
+                ->where('date', $date)
+                ->get();
+
+            $patientIds = $records->pluck('id_patient')->toArray();
 
 
+            $patients = Patient::whereIn('id', $patientIds)->get();
 
 
+            return new View('site.choice_patient', ['patients' => $patients]);
+        }
 
 
-
+        $doctors = Doctor::all();
+        return new View('site.choice_patient', ['doctors' => $doctors]);
+    }
 
 }
 

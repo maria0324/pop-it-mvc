@@ -2,7 +2,7 @@
 <form method="POST">
     <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <label>Выбрать пациента<br>
-        <select name="patient_id">
+        <select class="selectType" name="patient_id">
             <?php
 
             foreach ($patients as $patient) {
@@ -13,7 +13,7 @@
             ?>
         </select>
     </label><br>
-    <button>Показать записи</button>
+    <button class="choice_button">Показать записи</button>
 </form>
 
 <?php

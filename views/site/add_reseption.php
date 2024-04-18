@@ -2,6 +2,7 @@
     <h2>Запись на прием</h2>
 
     <form method="post">
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="size_block">
 
 
