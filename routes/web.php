@@ -14,10 +14,13 @@ Route::add(['GET', 'POST'], '/add_doctor', [Controller\Site::class, 'add_doctor'
 Route::add(['GET', 'POST'], '/add_reseption', [Controller\Site::class, 'add_reseption']);
 Route::add(['GET', 'POST'], '/doctor', [Controller\Site::class, 'doctor']);
 Route::add(['GET', 'POST'], '/record', [Controller\Site::class, 'record']);
+Route::add(['GET', 'POST'], '/record/{id}', [Controller\Site::class, 'recordInfo']);
+Route::add(['POST'], '/change_status', [Controller\Site::class, 'changeStatus']);
+
+Route::add(['GET', 'POST'], '/cancel_appointment', [Controller\Site::class, 'cancel_appointment']);
 Route::add(['GET', 'POST'], '/patient', [Controller\Site::class, 'patient']);
 Route::add(['GET', 'POST'], '/choice_doctor', [Controller\Site::class, 'choice_doctor']);
 Route::add(['GET', 'POST'], '/choice_patient', [Controller\Site::class, 'choice_patient']);
-Route::add('GET', '/cancel_record.php', [Controller\Site::class, 'cancelRecord']);
 Route::add(['GET', 'POST'], '/choice_record', [Controller\Site::class, 'choice_record']);
 Route::add(['GET', 'POST'], '/admin', [Controller\Admin::class, 'admin'])
     ->middleware('auth', 'role');

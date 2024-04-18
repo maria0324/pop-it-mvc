@@ -23,5 +23,10 @@ class Record extends Model
     ];
 
     protected $table = 'records';
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'id_status','id');
+    }
+
 
 }

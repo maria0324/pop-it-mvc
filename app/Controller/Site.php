@@ -151,12 +151,42 @@ class Site
 
     public function record(Request $request): string
     {
-        $record = Record::all();
+        // Получаем все записи
+        $records = Record::all();
+
+        // Получаем список пациентов
         $user = Patient::all();
+
+        // Получаем список статусов
         $status = Status::all();
+
+        // Получаем список врачей
         $doctor = Doctor::all();
 
-        return (new View())->render('site.record', ['statuses' => $status,'records' => $record, 'user'=>$user, 'doctors' => $doctor]);
+        // Разделяем записи на активные и отмененные
+        $activeRecords = [];
+        $cancelledRecords = [];
+
+        foreach ($records as $record) {
+            if ($record->id_status === 1) {
+                // Активные записи
+                $activeRecords[] = $record;
+            } else {
+                // Отмененные записи
+                $cancelledRecords[] = $record;
+            }
+        }
+
+
+        $sortedRecords = array_merge($activeRecords, $cancelledRecords);
+
+        // Передаем отсортированные записи в представление
+        return new View('site.record', [
+            'statuses' => $status,
+            'records' => $sortedRecords,
+            'user' => $user,
+            'doctors' => $doctor
+        ]);
     }
 
 
@@ -268,6 +298,42 @@ class Site
 
         $doctors = Doctor::all();
         return new View('site.choice_patient', ['doctors' => $doctors]);
+    }
+
+
+    public function recordInfo($id) {
+        $request = new Request();
+        $record = Record::find($id);
+        $patient = Patient::where('id', $record->id_patient)->first();
+        $doctor = Doctor::where('id', $record->id_doctor)->first();
+        $statuses = Status::all();
+
+
+        if ($request->method === 'POST') {
+            if (isset($_GET['goToInfoRecord'])) {
+                $record->update($request->all());
+                return (new View())->render('site.record_info', ['record' => $record, 'patient' => $patient, 'doctor' => $doctor, 'statuses' => $statuses]);
+            }
+        }
+        return (new View())->render('site.record_info', ['record' => $record, 'patient' => $patient, 'doctor' => $doctor, 'statuses' => $statuses]);
+    }
+
+    public function changeStatus($id) {
+        $request = new Request();
+        $record = Record::find($id);
+        $patient = Patient::where('id', $record->id_patient)->first();
+        $doctor = Doctor::where('id', $record->id_doctor)->first();
+        $statuses = Status::all();
+
+
+        if ($request->method === 'POST') {
+            if (isset($_GET['goToInfoRecord'])) {
+                $record->update($request->all());
+                return (new View())->render('site.record', ['record' => $record, 'patient' => $patient, 'doctor' => $doctor, 'statuses' => $statuses]);
+            }
+        }
+        return (new View())->render('site.record', ['record' => $record, 'patient' => $patient, 'doctor' => $doctor, 'statuses' => $statuses]);
+
     }
 
 }
