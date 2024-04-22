@@ -97,9 +97,6 @@ class Site
 
             ], [
                 'required' => 'Поле :field пустое',
-
-
-
             ]);
 
             if($validator->fails()){
@@ -108,7 +105,7 @@ class Site
             }
 
             if (Doctor::create($request->all())) {
-                return new View('site.add_doctor', ['message'=>'Пациент успешно создан']);
+                return new View('site.add_doctor', ['message'=>'Доктор успешно создан']);
             }
         }
 
@@ -130,7 +127,6 @@ class Site
             return new View('site.add_reseption', ['message'=>'Пациент успешно создан', 'doctors' => $doctor, 'patients' => $patient]);
         }
 
-        /*  */
 
         return (new View())->render('site.add_reseption', ['doctors' => $doctor,'patients' => $patient]);
     }
@@ -199,13 +195,11 @@ class Site
                 'gender' => ['required'],
                 'address' => ['required'],
                 'polis' => ['required'],
-                'number' => ['required'],
+                'numder' => ['required'],
                 'date_birth' => ['required']
             ], [
                 'required' => 'Поле :field пустое',
                 'date_birth' => 'В поле :field указан неверный год'
-
-
             ]);
 
             if($validator->fails()){
@@ -335,4 +329,3 @@ class Site
     }
 
 }
-
